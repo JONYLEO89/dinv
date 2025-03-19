@@ -112,10 +112,11 @@
             100% { background-color: #ffebee; }
         }
         .alerta-desplegable {
-            position:relative;
-            margin: 20px auto;
-            width: 60%;
-            max-width: 600px;
+            position: relative;
+            margin: 20px auto; /* Centrar el contenedor */
+            width: 90%; /* Ajustar el ancho */
+            max-width: 600px; /* Ancho máximo */
+            text-align: center; /* Centrar el contenido */
         }
         .boton-alerta {
             background-color: #d32f2f;
@@ -124,7 +125,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            width: 100%;
+            width: 100%; /* Ocupar el ancho completo del contenedor */
             font-size: 16px;
             transition: background-color 0.3s;
         }
@@ -132,7 +133,7 @@
             background-color: #b71c1c;
         }
         .contenido-alerta {
-            display: flex;
+            display: none;
             position: absolute;
             background-color: white;
             width: 100%;
@@ -212,7 +213,7 @@
         /* Estilo para el mensaje flotante */
         .mensaje-flotante {
             position: fixed;
-            bottom: 20px;
+            top: 20px; /* Cambiar de bottom a top */
             left: 50%;
             transform: translateX(-50%);
             background-color: #4CAF50;
