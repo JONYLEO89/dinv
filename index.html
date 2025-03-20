@@ -113,10 +113,9 @@
         }
         .alerta-desplegable {
             position: relative;
-            margin: 20px auto; /* Centrar el contenedor */
-            width: 90%; /* Ajustar el ancho */
-            max-width: 600px; /* Ancho máximo */
-            text-align: center; /* Centrar el contenido */
+            margin: 20px auto;
+            width: 90%;
+            max-width: 600px;
         }
         .boton-alerta {
             background-color: #d32f2f;
@@ -125,7 +124,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            width: 100%; /* Ocupar el ancho completo del contenedor */
+            width: 100%;
             font-size: 16px;
             transition: background-color 0.3s;
         }
@@ -213,7 +212,7 @@
         /* Estilo para el mensaje flotante */
         .mensaje-flotante {
             position: fixed;
-            top: 20px; /* Cambiar de bottom a top */
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             background-color: #4CAF50;
@@ -227,6 +226,120 @@
     </style>
 </head>
 <body>
+ 
+    <title>Login</title>
+    <style>
+        /* Reset de márgenes y rellenos en el body y html */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+          
+        }
+    </style>
+</head>
+<body>
+  <style>
+        /* Reset de márgenes y rellenos en el body y html */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la pantalla */
+        }
+
+        /* Estilo para el contenedor principal */
+        #login-container {
+            width: 100%;
+            min-height: 100vh; /* Ocupa al menos el 100% de la pantalla */
+            background: linear-gradient(135deg, #1E3C72, #2A5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Estilo para el cuadro de inicio de sesión */
+        .login-box {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 350px;
+            display: flex;
+            flex-direction: column; /* Apila los elementos verticalmente */
+            align-items: center; /* Centra los elementos horizontalmente */
+        }
+
+        /* Estilo para el input de contraseña */
+        #login-password {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+            outline: none;
+            transition: 0.3s;
+            margin-bottom: 15px; /* Espacio entre el input y el botón */
+        }
+
+        /* Estilo para el botón de acceso */
+        #login-button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #4A90E2;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* Estilo para el mensaje de error */
+        #login-message {
+            color: #FF4B4B;
+            margin-top: 12px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-container">
+        <div class="login-box">
+            <h1 style="color: white; font-size: 1.8rem; margin-bottom: 20px;">Restaurant Diplomatic</h1>
+            
+            <input type="password" id="login-password" placeholder="Contraseña">
+            
+            <button id="login-button" onclick="checkLogin()">Acceder</button>
+            
+            <p id="login-message"></p>
+        </div>
+    </div>
+
+    <script>
+        function checkLogin() {
+            // Aquí puedes agregar la lógica para verificar la contraseña
+            const password = document.getElementById('login-password').value;
+            const message = document.getElementById('login-message');
+            
+            if (password === "1234") { // Cambia "1234" por tu contraseña válida
+                message.textContent = "Acceso concedido";
+                message.style.color = "#4CAF50";
+                // Redirige o realiza alguna acción después del login
+            } else {
+                message.textContent = "Contraseña incorrecta";
+                message.style.color = "#FF4B4B";
+            }
+        }
+    </script>
     <h2>Inventario General</h2>
 
     <!-- Mensaje flotante -->
@@ -253,7 +366,7 @@
     <button onclick="exportarPDF()">Exportar a PDF</button>
 
     <!-- Botón para acceder al modo completo -->
-    <button onclick="mostrarAutenticacion()">configuración</button>
+    <button onclick="mostrarAutenticacion()">Configuración</button>
 
     <!-- Contenedor de autenticación (oculto inicialmente) -->
     <div id="contenedor-autenticacion">
@@ -324,7 +437,7 @@
         let categorias = [];
 
         // Contraseña de acceso (cambia esto por una contraseña segura)
-        const CONTRASEÑA_CORRECTA = "admin123";
+        const CONTRASEÑA_CORRECTA = "and2025";
 
         // Función para mostrar el contenedor de autenticación
         function mostrarAutenticacion() {
@@ -775,6 +888,21 @@
         actualizarLista();
         actualizarListaCategorias();
         verificarAlertas();
+        
     </script>
+    <script>
+    function checkLogin() {
+        const password = document.getElementById('login-password').value;
+        const message = document.getElementById('login-message');
+        const correctPassword = "diplo25"; // Cambia esta contraseña por la que desees
+
+        if (password === correctPassword) {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        } else {
+            message.textContent = "Contraseña incorrecta. Inténtalo de nuevo.";
+        }
+    }
+</script>
 </body>
 </html>
