@@ -241,12 +241,23 @@
 </head>
 <body>
   <style>
-        /* Reset de márgenes y rellenos en el body y html */
-        html, body {
+         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
-            min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la pantalla */
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .overlay {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.5);
+            min-height: 100vh;
+            background-image: url('inventario/fondocafe.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.9;
+        }
         }
 
         /* Estilo para el contenedor principal */
