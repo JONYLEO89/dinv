@@ -377,7 +377,7 @@
             <input type="text" id="buscador" placeholder="Buscar producto..." oninput="filtrarProductos()">
             <div id="productos-autocompletados"></div>
         </div>
-        <input type="number" id="cantidad" placeholder="Cantidad">
+        <input type="number" id="cantidad" placeholder="Cantidad" step="0.01">
         <button onclick="agregarStock()">Agregar al Stock</button>
 
         <div class="alerta-desplegable">
@@ -415,8 +415,8 @@
 
             <h3>Agregar Nuevo Producto</h3>
             <input type="text" id="nuevo-producto" placeholder="Nombre del producto">
-            <input type="number" id="nuevo-cantidad" placeholder="Cantidad inicial" value="0">
-            <input type="number" id="nuevo-stock-minimo" placeholder="Stock mínimo" value="0">
+            <input type="number" id="nuevo-cantidad" placeholder="Cantidad inicial" value="0" step="0.01">
+            <input type="number" id="nuevo-stock-minimo" placeholder="Stock mínimo" value="0" step="0.01">
             <select id="nueva-categoria"></select>
             <button onclick="agregarProducto()">Añadir Producto</button>
 
@@ -518,8 +518,8 @@
                     datosInventario.push([
                         categoria,
                         producto,
-                        datos.cantidad,
-                        datos.stockMinimo,
+                        datos.cantidad.tofixed(2),
+                        datos.stockMinimo.tofixed(2),
                         estado
                     ]);
 
@@ -527,8 +527,8 @@
                         datosAlertas.push([
                             producto,
                             categoria,
-                            datos.cantidad,
-                            datos.stockMinimo,
+                            datos.cantidad.tofixed(2),
+                            datos.stockMinimo.tofixed(2),
                             datos.stockMinimo - datos.cantidad
                         ]);
                     }
@@ -601,7 +601,7 @@
 
         function agregarStock() {
             const producto = document.getElementById("buscador").value.trim();
-            const cantidad = parseInt(document.getElementById("cantidad").value);
+            const cantidad = parseFloat(document.getElementById("cantidad").value);
 
             if (producto && !isNaN(cantidad) && cantidad > 0) {
                 let encontrado = false;
@@ -718,9 +718,9 @@
                     fila.innerHTML = `
                         <td>${categoria}</td>
                         <td>${producto}</td>
-                        <td><input type="number" value="${datos.cantidad}" 
+                        <td><input type="number" step="0.01" value="${datos.cantidad}" 
                                onchange="actualizarCantidad('${categoria.replace(/'/g, "\\'")}', '${producto.replace(/'/g, "\\'")}', this.value)"></td>
-                        <td><input type="number" value="${datos.stockMinimo}" 
+                        <td><input type="number" step="0.01" value="${datos.stockMinimo}" 
                                onchange="actualizarStockMinimo('${categoria.replace(/'/g, "\\'")}', '${producto.replace(/'/g, "\\'")}', this.value)"></td>
                         <td><button onclick="eliminarProducto('${categoria.replace(/'/g, "\\'")}', '${producto.replace(/'/g, "\\'")}')">Eliminar</button></td>
                     `;
@@ -732,7 +732,7 @@
 
         function actualizarCantidad(categoria, producto, cantidad) {
             if (!isNaN(cantidad) && cantidad >= 0) {
-                inventario[categoria][producto].cantidad = parseInt(cantidad);
+                inventario[categoria][producto].cantidad = parseFloat(cantidad);
                 guardarInventario();
                 actualizarLista();
             } else {
@@ -742,7 +742,7 @@
 
         function actualizarStockMinimo(categoria, producto, stockMinimo) {
             if (!isNaN(stockMinimo) && stockMinimo >= 0) {
-                inventario[categoria][producto].stockMinimo = parseInt(stockMinimo);
+                inventario[categoria][producto].stockMinimo = parseFloat(stockMinimo);
                 guardarInventario();
                 actualizarLista();
             } else {
@@ -794,8 +794,8 @@
 
         function agregarProducto() {
             const nombre = document.getElementById("nuevo-producto").value.trim();
-            const cantidad = parseInt(document.getElementById("nuevo-cantidad").value);
-            const stockMinimo = parseInt(document.getElementById("nuevo-stock-minimo").value);
+            const cantidad = parseFloat(document.getElementById("nuevo-cantidad").value);
+            const stockMinimo = parseFloat(document.getElementById("nuevo-stock-minimo").value);
             const categoria = document.getElementById("nueva-categoria").value;
 
             if (nombre && !isNaN(cantidad) && !isNaN(stockMinimo)) {
@@ -884,8 +884,8 @@
                     rows.push([
                         categoria,
                         producto,
-                        datos.cantidad,
-                        datos.stockMinimo
+                        datos.cantidad.tofixed(2),
+                        datos.stockMinimo.tofixed(2)
                     ]);
                     
                     if(datos.cantidad < datos.stockMinimo) {
