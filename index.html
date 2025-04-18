@@ -518,8 +518,8 @@
                     datosInventario.push([
                         categoria,
                         producto,
-                        datos.cantidad.tofixed(2),
-                        datos.stockMinimo.tofixed(2),
+                        datos.cantidad.toFixed(2),
+                        datos.stockMinimo.toFixed(2),
                         estado
                     ]);
 
@@ -884,8 +884,8 @@
                     rows.push([
                         categoria,
                         producto,
-                        datos.cantidad.tofixed(2),
-                        datos.stockMinimo.tofixed(2)
+                        datos.cantidad.toFixed(2),
+                        datos.stockMinimo.toFixed(2)
                     ]);
                     
                     if(datos.cantidad < datos.stockMinimo) {
